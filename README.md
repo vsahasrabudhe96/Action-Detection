@@ -1,0 +1,4 @@
+# STEPS TO FOLLOW FOR PERFORMING ACTION DETECTION
+
+###1) Import the libraries
+
