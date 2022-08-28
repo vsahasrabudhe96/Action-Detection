@@ -1,6 +1,7 @@
 import mediapipe as mp
 import cv2
 import numpy as np
+import os
 def draw_holistics():
     mp_holistic = mp.solutions.holistic
     mp_drawing  = mp.solutions.drawing_utils

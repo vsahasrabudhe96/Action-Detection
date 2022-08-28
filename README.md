@@ -31,7 +31,11 @@
 - We initialize the amount of videos we want to collect for each action (number  of sequence)
 - We initialize the frames for each of the videos (sequence length)
 ### 5) Collect Keypoint Values for Training and Testing
-
+- Create a separate python script for data collection so that we don't perform the action again and again
+- run `python datacollection.py` for data collection process
+- In this file we will inpute the number of sequences, the data path and length of the sequences that we want capture via terminal arg parse
+- Introduce a time out /pause to capture data effectively
+- Store the keypoints in specific data folder 
 ### 6) Preprocess Data and Create Labels and Features
 
 
