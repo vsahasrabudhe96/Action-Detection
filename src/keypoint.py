@@ -1,5 +1,6 @@
 import mediapipe as mp
 import cv2
+import numpy as np
 def draw_holistics():
     mp_holistic = mp.solutions.holistic
     mp_drawing  = mp.solutions.drawing_utils
@@ -50,5 +51,28 @@ def draw_styled_landmarks(image, results):
     
 
 
-def extract_keypoints():
-    pass
+def extract_keypoints(results):
+    """Extracting the Keypoints for pose ,face, left hand and right hand. Handled the error values for giving  zero value for item not present in frame.
+
+    Args:
+        results (array): class of JSON/Dictionary format with face, pose ,left hand and right hand landmarks as methods
+
+    Returns:
+        array: concatenated flattened array of landmarks for pose, face kleft hand and right hand for that particular frame. Flattened so as to match the input formatting for LSTM model
+    """
+    pose = np.array([[res.x,res.y,res.z,res.visibility] for res in results.pose_landmarks.landmark]).flatten()\
+        if results.pose_landmarks.landmark else np.zeros(len(results.pose_landmarks.landmark)*4)
+        
+    face = np.array([[res.x,res.y,res.z] for res in results.face_landmarks.landmark]).flatten() \
+        if results.face_landmarks.landmark else np.zeros(len(results.face_landmarks.landmark)*3)
+        
+    lh = np.array([[res.x,res.y,res.z] for res in results.left_hand_landmarks.landmark]).flatten() \
+        if results.left_hand_landmarks.landmark else np.zeros(len(results.left_hand_landmarks.landmark)*3)
+        
+    rh = np.array([[res.x,res.y,res.z] for res in results.right_hand_landmarks.landmark]).flatten() \
+        if results.right_hand_landmarks.landmark else np.zeros(len(results.right_hand_landmarks.landmark)*3)
+        
+    return np.concatenate([pose,face,lh,rh])
+
+
+
