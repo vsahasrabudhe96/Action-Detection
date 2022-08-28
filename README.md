@@ -26,7 +26,10 @@
 
 
 ### 4) Setup Folders for Collection
-
+- We want to collect a sequence of frames for real time prediction
+- We initialize the action which we require to capture data for
+- We initialize the amount of videos we want to collect for each action (number  of sequence)
+- We initialize the frames for each of the videos (sequence length)
 ### 5) Collect Keypoint Values for Training and Testing
 
 ### 6) Preprocess Data and Create Labels and Features
