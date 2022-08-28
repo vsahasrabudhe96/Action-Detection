@@ -6,7 +6,7 @@ import os
 import time
 import mediapipe as mp
 import cv2
-from keypoint import draw_holistics,keypoint_detection,draw_styled_landmarks
+from src.keypoint import draw_holistics,keypoint_detection,draw_styled_landmarks
 
 
 
