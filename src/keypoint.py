@@ -62,21 +62,21 @@ def extract_keypoints(results):
         array: concatenated flattened array of landmarks for pose, face kleft hand and right hand for that particular frame. Flattened so as to match the input formatting for LSTM model
     """
     pose = np.array([[res.x,res.y,res.z,res.visibility] for res in results.pose_landmarks.landmark]).flatten()\
-        if results.pose_landmarks.landmark else np.zeros(len(results.pose_landmarks.landmark)*4)
+        if results.pose_landmarks else np.zeros(33*4)
         
     face = np.array([[res.x,res.y,res.z] for res in results.face_landmarks.landmark]).flatten() \
-        if results.face_landmarks.landmark else np.zeros(len(results.face_landmarks.landmark)*3)
+        if results.face_landmarks else np.zeros(468*3)
         
     lh = np.array([[res.x,res.y,res.z] for res in results.left_hand_landmarks.landmark]).flatten() \
-        if results.left_hand_landmarks.landmark else np.zeros(len(results.left_hand_landmarks.landmark)*3)
+        if results.left_hand_landmarks else np.zeros(21*3)
         
     rh = np.array([[res.x,res.y,res.z] for res in results.right_hand_landmarks.landmark]).flatten() \
-        if results.right_hand_landmarks.landmark else np.zeros(len(results.right_hand_landmarks.landmark)*3)
+        if results.right_hand_landmarks else np.zeros(21*3)
         
     return np.concatenate([pose,face,lh,rh])
 
 
-def create_folders(DATA_PATH,actions,no_sequences):
+def create_remove_folders(DATA_PATH,actions,no_sequences):
     for action in actions:
         for sequence in range(no_sequences):
             try:
