@@ -24,5 +24,5 @@ model.add(Dense(32,activation='relu'))
 model.add(Dense(actions.shape[0],activation='softmax'))
     
 model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=['categorical_accuracy'])
-model.fit(X_train,y_train,epoch=50,callbacks=[tb_callback])
+model.fit(X_train,y_train,epochs=100,callbacks=[tb_callback])
 model.save('../models/action.h5')
