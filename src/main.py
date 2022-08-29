@@ -7,7 +7,6 @@ import argparse
 import mediapipe as mp
 import cv2
 from keypoint import draw_holistics,keypoint_detection,draw_styled_landmarks
-from preprocess import train_test_data
 
 
 
@@ -18,7 +17,6 @@ if __name__ == "__main__":
     actions = np.array(['hello','thank you','I love you']) ## Actions we try to detect
     no_sequences = 20  ## no_sequences == number of videos we want to collect e.g here we will collect 30 videos
     sequence_length = 20 ## Each video will be of 30 frames
-    # create_folders(DATA_PATH,actions,no_sequences)
     
     mp_holistic,mp_drawing = draw_holistics()
     cap = cv2.VideoCapture(0)
